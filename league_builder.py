@@ -30,9 +30,10 @@ if __name__ == '__main__':
     		reader = csv.DictReader(csvfile, delimiter = ',')
     		for row in reader:
     			if row['Soccer Experience'] == 'YES':
-    				experienced_players.append(row['Name']) 			
+    				player_record = (row['Name'], row['Soccer Experience'], row['Guardian Name(s)'])
+    				experienced_players.append(player_record) 			
     			else:
-    				new_players.append(row['Name'])
+    				new_players.append(row)
     		return experienced_players, new_players
 
     x,y = sort_players()   
@@ -46,15 +47,16 @@ if __name__ == '__main__':
     	equal_division = len(players) // 3
 
     	shark_players = random.sample(players, equal_division)
-    	sharks.append(shark_players)
+    	sharks.extend(shark_players)
 
     	dragon_players = random.sample(players, equal_division)
-    	dragons.append(dragon_players)
+    	dragons.extend(dragon_players)
 
     	raptors_players = random.sample(players, equal_division)
-    	raptors.append(raptors_players)
+    	raptors.extend(raptors_players)
 
     player_picker(x)
+    player_picker(y)
 
     print('Sharks are: {}'.format(sharks))
     print('Dragons are: {}'.format(dragons))
@@ -64,7 +66,12 @@ if __name__ == '__main__':
     #Write team name to teams.txt file with seperator line
     def write_file():
     	with open("teams.txt", "w") as file:
-    		file.write('Test writer') #Change this to actual team names
+    		final_sharks = ('The Sharks\n==========================\n{}'.format(sharks))
+    		final_dragons = ('The Dragons\n==========================\n{}'.format(dragons))
+    		final_raptors = ('The Raptors\n==========================\n{}'.format(raptors))
+    		file.write(final_sharks)
+    		file.write(final_dragons)
+    		file.write(final_raptors)
     write_file()
 
 
