@@ -33,7 +33,8 @@ if __name__ == '__main__':
     				player_record = (row['Name'], row['Soccer Experience'], row['Guardian Name(s)'])
     				experienced_players.append(player_record) 			
     			else:
-    				new_players.append(row)
+    				player_record = (row['Name'], row['Soccer Experience'], row['Guardian Name(s)'])
+    				new_players.append(player_record)
     		return experienced_players, new_players
 
     x,y = sort_players()   
@@ -58,17 +59,20 @@ if __name__ == '__main__':
     player_picker(x)
     player_picker(y)
 
-    print('Sharks are: {}'.format(sharks))
-    print('Dragons are: {}'.format(dragons))
-    print('Sharks are: {}'.format(raptors))
-
+    def format_players(team):
+    	for p in team:
+    		player_record = ', '.join(p)
+    		print(player_record)
+    format_players(sharks)
 
     #Write team name to teams.txt file with seperator line
     def write_file():
     	with open("teams.txt", "w") as file:
-    		final_sharks = ('The Sharks\n==========================\n{}'.format(sharks))
-    		final_dragons = ('The Dragons\n==========================\n{}'.format(dragons))
-    		final_raptors = ('The Raptors\n==========================\n{}'.format(raptors))
+    		
+
+    		final_sharks = ('The Sharks\n==========================\n{}\n\n'.format(sharks))
+    		final_dragons = ('The Dragons\n==========================\n{}\n\n'.format(dragons))
+    		final_raptors = ('The Raptors\n==========================\n{}\n\n'.format(raptors))
     		file.write(final_sharks)
     		file.write(final_dragons)
     		file.write(final_raptors)
