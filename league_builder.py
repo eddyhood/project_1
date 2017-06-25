@@ -47,17 +47,21 @@ if __name__ == '__main__':
     # Evenly assign players to teams according to skillset
 
     def player_picker(players):
-    	#take players and randomly sample and assign them to teams
+
+
+    	# #take players and randomly sample and assign them to teams
+
     	equal_division = len(players) // 3
 
-    	shark_players = random.sample(players, equal_division)
+    	shark_players = players[0:equal_division]
     	sharks.extend(shark_players)
 
-    	dragon_players = random.sample(players, equal_division)
+    	dragon_players = players[equal_division:equal_division*2]
     	dragons.extend(dragon_players)
 
-    	raptors_players = random.sample(players, equal_division)
+    	raptors_players = players[equal_division*2:]
     	raptors.extend(raptors_players)
+
 
     player_picker(x)
     player_picker(y)
@@ -95,9 +99,26 @@ if __name__ == '__main__':
     		file.write(str(get_raptors))
     write_file()
 
-    
-else:
-	pass
+    def write_letter(team):
+    	practice_time = "July 29th, at 8:00 A.M."
+    	practice_location = "Barnes Park"
+
+    	for player in team:
+    		get_player_name = player[0]
+    		player_first_name = get_player_name.split(' ',1)[0]
+    		get_guardian_name = player[2]
+    		file_title = get_player_name.replace(' ','_')
+    		file_name = file_title.lower()+'.txt'
+    	
+	    	with open(file_name, "w") as file:
+	    		file.write("Dear {},\n\n".format(get_guardian_name))
+	    		file.write("I'm coach Hood and I can't wait to meet {} on the field.\n".format(player_first_name))
+	    		file.write("Our first practice is at {} on {}.\n".format(practice_location, practice_time))
+	    		file.write("I'll see you guys then!\n\n")
+	    		file.write("sincerely,\n")
+	    		file.write("Coach Hood")
+
+    write_letter(sharks)
 
 
 
