@@ -60,22 +60,33 @@ if __name__ == '__main__':
     player_picker(y)
 
     def format_players(team):
+    	players = []
     	for p in team:
     		player_record = ', '.join(p)
-    		print(player_record)
-    format_players(sharks)
+    		players.append(player_record)
+    	final_roster = '\n'.join(players)
+    	return final_roster
 
     #Write team name to teams.txt file with seperator line
     def write_file():
     	with open("teams.txt", "w") as file:
-    		
 
-    		final_sharks = ('The Sharks\n==========================\n{}\n\n'.format(sharks))
-    		final_dragons = ('The Dragons\n==========================\n{}\n\n'.format(dragons))
-    		final_raptors = ('The Raptors\n==========================\n{}\n\n'.format(raptors))
-    		file.write(final_sharks)
-    		file.write(final_dragons)
-    		file.write(final_raptors)
+    		sharks_header = ('\n\nThe Sharks\n==========================\n')
+    		get_sharks = format_players(sharks)
+
+    		dragons_header = ('\n\nThe Dragons\n==========================\n')
+    		get_dragons = format_players(dragons)
+
+    		raptors_header = ('\n\nThe Raptors\n==========================\n')
+    		get_raptors = format_players(raptors)
+
+
+    		file.write(sharks_header)
+    		file.write(str(get_sharks))
+    		file.write(dragons_header)
+    		file.write(str(get_dragons))
+    		file.write(raptors_header)
+    		file.write(str(get_raptors))
     write_file()
 
 
