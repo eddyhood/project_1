@@ -1,5 +1,4 @@
 import csv
-import random
 
 #=========================  REQUIREMENTS  ====================================#
 #Make sure script doesn't execute when imported. Keep all code within __name__ == '__main__'
@@ -76,6 +75,16 @@ if __name__ == '__main__':
     	final_roster = '\n'.join(players)
     	return final_roster
 
+    def team_look_up(player):
+    	if player in sharks:
+    		return 'Sharks'
+    	elif player in dragons:
+    		return 'Dragons'
+    	elif player in raptors:
+    		return 'Raptors'
+    	else:
+    		print("This player hasn't been assigned to a team yet.")
+
 
     #Write the final roster to the text file
     def write_file():
@@ -97,6 +106,7 @@ if __name__ == '__main__':
     		file.write(str(get_dragons))
     		file.write(raptors_header)
     		file.write(str(get_raptors))
+
     write_file()
 
     def write_letter(team):
@@ -109,16 +119,21 @@ if __name__ == '__main__':
     		get_guardian_name = player[2]
     		file_title = get_player_name.replace(' ','_')
     		file_name = file_title.lower()+'.txt'
+    		get_team = team_look_up(player)
     	
 	    	with open(file_name, "w") as file:
 	    		file.write("Dear {},\n\n".format(get_guardian_name))
 	    		file.write("I'm coach Hood and I can't wait to meet {} on the field.\n".format(player_first_name))
+	    		file.write("Your soccer star has been drafted on the {} team!\n".format(get_team))
 	    		file.write("Our first practice is at {} on {}.\n".format(practice_location, practice_time))
 	    		file.write("I'll see you guys then!\n\n")
 	    		file.write("sincerely,\n")
 	    		file.write("Coach Hood")
 
     write_letter(sharks)
+    write_letter(dragons)
+    write_letter(raptors)
+
 
 
 
