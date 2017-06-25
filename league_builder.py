@@ -1,8 +1,10 @@
 import csv
 import random
-#Make sure script doesn't execute when imported. Keep all code within name == main
 
-#Create variables and programming logic to divide the 18 players into three teams:
+#=========================  REQUIREMENTS  ====================================#
+#Make sure script doesn't execute when imported. Keep all code within __name__ == '__main__'
+
+#Create variables and programming logic to divide the 18 players into three teams
 #Sharks, Dragons and Raptors. Make sure the teams have the same number of 
 #players on them, and that the experience players are divided equally across the three teams.
 
@@ -17,6 +19,7 @@ import random
 if __name__ == '__main__':
 
     #open soccer_players.csv with the ability to read and parse data. 
+    #Create logic that seperates the experiences players from the new players
 
     sharks = []
     dragons = []
@@ -40,8 +43,8 @@ if __name__ == '__main__':
     x,y = sort_players()   
 
    
-    #Create logic that seperates the experiences players from the new players
-    # def create_roster(Experience):
+    
+    # Evenly assign players to teams according to skillset
 
     def player_picker(players):
     	#take players and randomly sample and assign them to teams
@@ -59,6 +62,8 @@ if __name__ == '__main__':
     player_picker(x)
     player_picker(y)
 
+
+    #Format output of players
     def format_players(team):
     	players = []
     	for p in team:
@@ -67,17 +72,18 @@ if __name__ == '__main__':
     	final_roster = '\n'.join(players)
     	return final_roster
 
-    #Write team name to teams.txt file with seperator line
+
+    #Write the final roster to the text file
     def write_file():
     	with open("teams.txt", "w") as file:
 
-    		sharks_header = ('\n\nThe Sharks\n==========================\n')
+    		sharks_header = ('\n\nThe Sharks\n==============================\n')
     		get_sharks = format_players(sharks)
 
-    		dragons_header = ('\n\nThe Dragons\n==========================\n')
+    		dragons_header = ('\n\nThe Dragons\n==============================\n')
     		get_dragons = format_players(dragons)
 
-    		raptors_header = ('\n\nThe Raptors\n==========================\n')
+    		raptors_header = ('\n\nThe Raptors\n==============================\n')
     		get_raptors = format_players(raptors)
 
 
@@ -89,14 +95,13 @@ if __name__ == '__main__':
     		file.write(str(get_raptors))
     write_file()
 
+    
+else:
+	pass
 
 
 
-#Divide experienced players up uevenly into the three teams
 
-#Divide the new players up into the teams
-
-#Check to ensure that each team has 1/3 of players and that experience is equal
 
   
 
